@@ -5,8 +5,8 @@ import { ImageGrid } from './components/ImageGrid';
 import { ImageModal } from './components/ImageModal';
 
 export default function GridImageViewer() {
-  const [baseId, setBaseId] = useState(1943560);
-  const [startId, setStartId] = useState(1943560);
+  const [baseId, setBaseId] = useState(1962559);
+  const [startId, setStartId] = useState(1962559);
   const [rangeSize, setRangeSize] = useState(500);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
@@ -133,7 +133,7 @@ export default function GridImageViewer() {
         {/* Header */}
         <div style={{ marginBottom: '2.5rem' }}>
           <h1 style={{ margin: '0 0 0.5rem 0', fontSize: 'clamp(1.2rem, 4vw, 2rem)', fontWeight: '300', letterSpacing: '0.5px' }}>
-            Pato
+            Prueba Pato
           </h1>
           <div style={{ height: '1px', background: 'rgba(255,255,255,0.15)', width: '100%' }}></div>
         </div>
