@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 
 export function SearchControls({ baseId, setBaseId, rangeSize, setRangeSize, onSearch, loading, loadedCount, images, successCount }) {
   const btnBase = {
@@ -37,19 +37,27 @@ export function SearchControls({ baseId, setBaseId, rangeSize, setRangeSize, onS
           <label style={{ display: 'block', fontSize: '0.7rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.4rem' }}>
             Cantidad
           </label>
-          <select
-            value={rangeSize}
-            onChange={(e) => setRangeSize(Number(e.target.value))}
-            style={{
-              width: '100%', padding: 'clamp(0.5rem, 2vw, 0.65rem) clamp(0.5rem, 2vw, 0.75rem)',
-              background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '4px', color: '#fff', fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', cursor: 'pointer'
-            }}
-          >
-            {[100, 200, 300, 400, 500, 1000, 2000].map(v => (
-              <option key={v} value={v}>{v}</option>
-            ))}
-          </select>
+          <div style={{ position: 'relative' }}>
+            <select
+              value={rangeSize}
+              onChange={(e) => setRangeSize(Number(e.target.value))}
+              style={{
+                width: '100%', padding: 'clamp(0.5rem, 2vw, 0.65rem) clamp(0.5rem, 2vw, 0.75rem)',
+                paddingRight: '2.25rem', appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'none',
+                background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: '4px', color: '#fff', fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', cursor: 'pointer',
+                lineHeight: 'normal'
+              }}
+            >
+              {[100, 200, 300, 400, 500, 1000, 2000].map(v => (
+                <option key={v} value={v} style={{ background: '#111', color: '#fff' }}>{v}</option>
+              ))}
+            </select>
+            <ChevronDown size={16} style={{
+              position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)',
+              color: 'rgba(255,255,255,0.5)', pointerEvents: 'none'
+            }} />
+          </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'flex-end' }}>
           <button
