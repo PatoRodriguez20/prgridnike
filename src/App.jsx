@@ -4,9 +4,11 @@ import { Pagination } from './components/Pagination';
 import { ImageGrid } from './components/ImageGrid';
 import { ImageModal } from './components/ImageModal';
 
+const INITIAL_ID = Number(import.meta.env.ID_INICIAL) || 1962616;
+
 export default function GridImageViewer() {
-  const [baseId, setBaseId] = useState(1962616);
-  const [startId, setStartId] = useState(1962616);
+  const [baseId, setBaseId] = useState(INITIAL_ID);
+  const [startId, setStartId] = useState(INITIAL_ID);
   const [rangeSize, setRangeSize] = useState(500);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
