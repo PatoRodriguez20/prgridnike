@@ -10,7 +10,6 @@ export default function GridImageViewer() {
   const [rangeSize, setRangeSize] = useState(500);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
@@ -27,14 +26,6 @@ export default function GridImageViewer() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedImage]);
 
-  useEffect(() => {
-    if (images.length === 0) return;
-    const allLoaded = images.every(img => img.loaded);
-    if (allLoaded) {
-      setLoading(false);
-    }
-  }, [images]);
-
   // --- GRID SEARCH ---
   const generateImages = (start, count) => {
     const imageList = [];
@@ -43,7 +34,6 @@ export default function GridImageViewer() {
       imageList.push({ id, url: `${baseUrl}${id}-1200-1200?width=1200&height=1200&aspect=true`, loaded: false, error: false });
     }
     setImages(imageList);
-    setLoading(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -92,6 +82,7 @@ export default function GridImageViewer() {
   const loadedCount = images.filter(img => img.loaded).length;
   const successCount = images.filter(img => img.loaded && !img.error).length;
   const validImages = images.filter(img => !img.error);
+  const loading = images.some(img => !img.loaded);
 
   return (
     <div style={{

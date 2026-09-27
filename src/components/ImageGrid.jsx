@@ -1,13 +1,8 @@
 import { Copy, Check } from 'lucide-react';
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 
 export function ImageGrid({ images, onImageClick, onCopy, copied, onImageLoad, onImageError }) {
-  const [visibleIds, setVisibleIds] = useState(new Set());
   const imageRefs = useRef({});
-
-  useEffect(() => {
-    setVisibleIds(new Set(images.map(img => String(img.id))));
-  }, [images]);
 
   if (images.length === 0) return null;
 
@@ -39,17 +34,13 @@ export function ImageGrid({ images, onImageClick, onCopy, copied, onImageLoad, o
             alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative'
           }}>
             {!image.loaded && <div style={{ position: 'absolute', fontSize: '1.2rem', opacity: 0.4 }}>⏳</div>}
-            {visibleIds.has(String(image.id)) ? (
-              <img
-                src={image.url}
-                alt={`Product ${image.id}`}
-                onLoad={() => onImageLoad(image.id)}
-                onError={() => onImageError(image.id)}
-                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', opacity: image.loaded ? 1 : 0.2, transition: 'opacity 0.3s' }}
-              />
-            ) : (
-              <div style={{ width: '100%', height: '100%', background: 'rgba(0,0,0,0.2)' }} />
-            )}
+            <img
+              src={image.url}
+              alt={`Product ${image.id}`}
+              onLoad={() => onImageLoad(image.id)}
+              onError={() => onImageError(image.id)}
+              style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', opacity: image.loaded ? 1 : 0.2, transition: 'opacity 0.3s' }}
+            />
           </div>
           <div style={{
             padding: 'clamp(0.2rem, 1vw, 0.3rem) clamp(0.2rem, 1vw, 0.4rem)', background: 'rgba(0,0,0,0.5)',
